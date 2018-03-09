@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  
+  <body>
+    <div class="wrapper">
+        <h3>I'm thinking of a number between 1 and 100. Can you guess it?</h3> 
+        <div class="{{session['result']}}">
+            <h4>{{session['guidance']}}</h4>
+            {% if session['result'] == "right" %}
+            <form  action="/reset" method="post">
+                <input type="submit" value="Play Again!">
+            </form>
+            {% endif %}
+        </div>
+        <form action="/guess" method="post">
+            <input type="text" name="guess"><br>
+            <input type="submit" value="Guess!">
+        </form>
+    </div>
+  </body>
+</html>
